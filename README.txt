@@ -27,4 +27,4 @@ THE SOFTWARE.
 * originally by Eric Petersen
 * modified by Tirino to support subtitles and extra controls.
 *
-* Used by Freevana Player: http://freevana.org*
+* Used by Freevana Player: http://freevana.org
