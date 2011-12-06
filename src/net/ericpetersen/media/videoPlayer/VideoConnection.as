@@ -39,7 +39,21 @@ package net.ericpetersen.media.videoPlayer {
 		* @eventType PLAYER_STATE_CHANGED
 		*/
 		public static const PLAYER_STATE_CHANGED:String = "PLAYER_STATE_CHANGED";
-		
+
+		/**
+		* Dispatched when the video starts playing
+		*
+		* @eventType VIDEO_STARTED_PLAYING
+		*/
+		public static const VIDEO_STARTED_PLAYING:String = "VIDEO_STARTED_PLAYING";
+
+		/**
+		* Dispatched when the video is not found
+		*
+		* @eventType VIDEO_NOT_AVAILABLE
+		*/
+		public static const VIDEO_NOT_AVAILABLE:String = "VIDEO_NOT_AVAILABLE";
+
 		public static const UNSTARTED:int = -1;
 		public static const ENDED:int = 0;
 		public static const PLAYING:int = 1;
@@ -199,7 +213,21 @@ package net.ericpetersen.media.videoPlayer {
 				setPlayerState(PAUSED);
 			}
 		}
-		
+
+		/**
+		 * Stop the video
+		 */
+		public function stopVideo():void {
+			if (ns) {
+				trace("stopVideo");
+				ns.close();
+				setPlayerState(ENDED);
+			}
+		    if (_nc) {
+		        _nc.close();
+		    }
+		}
+
 		/**
 		 * Play the video
 		 */
@@ -269,6 +297,9 @@ package net.ericpetersen.media.videoPlayer {
 				case "NetConnection.Connect.Success":
 					connectStream();
 					break;
+				case "NetStream.Play.Start":
+					dispatchEvent(new Event(VIDEO_STARTED_PLAYING));
+					break;
 				case "NetStream.Play.Stop":
 					if (_ns.time > 0 && _ns.time >= (_duration - 0.5)) {
 						setPlayerState(ENDED);
@@ -277,6 +308,7 @@ package net.ericpetersen.media.videoPlayer {
 					break;
 				case "NetStream.Play.StreamNotFound":
 					trace("Stream not found: " + _videoName);
+					dispatchEvent(new Event(VIDEO_NOT_AVAILABLE));
 					break;
 				default :
 					break;
