@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright (c) 2011 Eric Petersen
+Copyright (c) 2011 Eric Petersen, Tirino (tirino.wok@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 
 * A Flash AS3 Video Player with Skinnable Controls
-* by Eric Petersen
-* Example: http://blog.ericpetersen.net/examples/videoPlayerWithControls/
-* Usage: http://blog.ericpetersen.net/?p=8
+* originally by Eric Petersen
+* modified by Tirino to support subtitles and extra controls.
+*
+* Used by Freevana Player: http://freevana.org*
